@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/platform.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/hazard.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/collectible.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/station.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/exit_portal.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/checkpoint.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://scenes/updraft.tscn" id="9"]
+
+[node name="Level02" type="Node2D"]
+script = ExtResource("1")
+layer_index = 1
+bg_color = Color(0.2, 0.08, 0.02, 1)
+limit_right = 1632
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(80, 560)
+
+[node name="LeftWall" parent="." instance=ExtResource("3")]
+position = Vector2(-32, 360)
+size = Vector2(32, 240)
+
+[node name="Ground1" parent="." instance=ExtResource("3")]
+position = Vector2(0, 600)
+size = Vector2(500, 120)
+
+[node name="Ground2" parent="." instance=ExtResource("3")]
+position = Vector2(700, 600)
+size = Vector2(900, 120)
+
+[node name="RightWall" parent="." instance=ExtResource("3")]
+position = Vector2(1600, 360)
+size = Vector2(32, 240)
+
+[node name="LiquidIron" parent="." instance=ExtResource("4")]
+position = Vector2(500, 640)
+size = Vector2(200, 80)
+color = Color(0.9, 0.5, 0.2, 0.6)
+damage_per_second = 80.0
+hazard_name = "Ferro líquido"
+scan_text = "O núcleo externo é feito de ferro e níquel derretidos. O contato é fatal para o traje."
+
+[node name="Convection" parent="." instance=ExtResource("9")]
+position = Vector2(540, 380)
+size = Vector2(120, 320)
+updraft_name = "Corrente de convecção"
+scan_text = "O metal líquido do núcleo externo circula: o material quente sobe e o mais frio desce. Esse movimento gera o campo magnético da Terra."
+
+[node name="HeatGeyser" parent="." instance=ExtResource("4")]
+position = Vector2(1150, 560)
+size = Vector2(250, 40)
+color = Color(1, 0.6, 0.1, 0.45)
+required_ability = "heat_resist"
+hazard_name = "Gêiser de calor"
+scan_text = "Jato de gás extremamente quente. O Isolante Térmico protege o traje."
+
+[node name="Ferro1" parent="." instance=ExtResource("5")]
+position = Vector2(250, 570)
+
+[node name="Ferro2" parent="." instance=ExtResource("5")]
+position = Vector2(320, 570)
+
+[node name="Silicato1" parent="." instance=ExtResource("5")]
+position = Vector2(760, 570)
+material_id = "silicato"
+
+[node name="Silicato2" parent="." instance=ExtResource("5")]
+position = Vector2(820, 570)
+material_id = "silicato"
+
+[node name="Checkpoint1" parent="." instance=ExtResource("8")]
+position = Vector2(740, 560)
+
+[node name="Station" parent="." instance=ExtResource("6")]
+position = Vector2(1000, 568)
+
+[node name="Exit" parent="." instance=ExtResource("7")]
+position = Vector2(1500, 560)
+required_component = "reforco_estrutural"
+
+[node name="Player" parent="." instance=ExtResource("2")]

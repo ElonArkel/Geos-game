@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/platform.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/hazard.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/collectible.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/station.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/exit_portal.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/checkpoint.tscn" id="8"]
+
+[node name="Level01" type="Node2D"]
+script = ExtResource("1")
+layer_index = 0
+bg_color = Color(0.16, 0.05, 0.04, 1)
+limit_right = 2032
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(80, 560)
+
+[node name="LeftWall" parent="." instance=ExtResource("3")]
+position = Vector2(-32, 360)
+size = Vector2(32, 240)
+
+[node name="Ground1" parent="." instance=ExtResource("3")]
+position = Vector2(0, 600)
+size = Vector2(700, 120)
+
+[node name="Ground2" parent="." instance=ExtResource("3")]
+position = Vector2(1000, 600)
+size = Vector2(1000, 120)
+
+[node name="RightWall" parent="." instance=ExtResource("3")]
+position = Vector2(2000, 360)
+size = Vector2(32, 240)
+
+[node name="PlatA" parent="." instance=ExtResource("3")]
+position = Vector2(770, 540)
+size = Vector2(80, 16)
+
+[node name="PlatB" parent="." instance=ExtResource("3")]
+position = Vector2(900, 490)
+size = Vector2(80, 16)
+
+[node name="PlatC" parent="." instance=ExtResource("3")]
+position = Vector2(1360, 540)
+size = Vector2(100, 16)
+
+[node name="PlatD" parent="." instance=ExtResource("3")]
+position = Vector2(1480, 490)
+size = Vector2(100, 16)
+
+[node name="PlatE" parent="." instance=ExtResource("3")]
+position = Vector2(1600, 440)
+size = Vector2(100, 16)
+
+[node name="Magma" parent="." instance=ExtResource("4")]
+position = Vector2(700, 620)
+size = Vector2(300, 100)
+damage_per_second = 60.0
+
+[node name="HeatGeyser" parent="." instance=ExtResource("4")]
+position = Vector2(1350, 560)
+size = Vector2(350, 40)
+color = Color(1, 0.6, 0.1, 0.45)
+required_ability = "heat_resist"
+hazard_name = "Gêiser de calor"
+scan_text = "Jato de gás extremamente quente vindo de dentro do planeta. Prejudica o traje."
+
+[node name="Ferro1" parent="." instance=ExtResource("5")]
+position = Vector2(200, 570)
+
+[node name="Ferro2" parent="." instance=ExtResource("5")]
+position = Vector2(260, 570)
+
+[node name="Ferro3" parent="." instance=ExtResource("5")]
+position = Vector2(320, 570)
+
+[node name="Niquel1" parent="." instance=ExtResource("5")]
+position = Vector2(810, 510)
+material_id = "niquel"
+
+[node name="Niquel2" parent="." instance=ExtResource("5")]
+position = Vector2(940, 460)
+material_id = "niquel"
+
+[node name="Silicato1" parent="." instance=ExtResource("5")]
+position = Vector2(1650, 410)
+material_id = "silicato"
+
+[node name="Basalto1" parent="." instance=ExtResource("5")]
+position = Vector2(1800, 570)
+material_id = "basalto"
+
+[node name="Checkpoint1" parent="." instance=ExtResource("8")]
+position = Vector2(1040, 560)
+
+[node name="Station" parent="." instance=ExtResource("6")]
+position = Vector2(1130, 568)
+
+[node name="Exit" parent="." instance=ExtResource("7")]
+position = Vector2(1900, 560)
+required_component = "isolante_termico"
+
+[node name="Player" parent="." instance=ExtResource("2")]
